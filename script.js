@@ -4,7 +4,7 @@ var Route = ReactRouter.Route;
 var RouteHandler = ReactRouter.RouteHandler;
 
 var TransitionGroup = React.addons.CSSTransitionGroup;
-var ROUTE_DIRECTION = "xxxleft";
+var ROUTE_DIRECTION = "route-left";
 
 var Inbox = React.createClass({
   render: function() {
@@ -28,7 +28,7 @@ var Dashboard = React.createClass({
 
 var DashboardDetail = React.createClass({
   render: function() {
-    ROUTE_DIRECTION = "xxxright";
+    ROUTE_DIRECTION = "route-right";
     return (
       <div className="route-handler">
         <h2>Dashboard Details</h2>
@@ -56,7 +56,7 @@ var App = React.createClass({
     console.log(name);
 
     var transitionName = ROUTE_DIRECTION;
-    ROUTE_DIRECTION = "xxxleft";
+    ROUTE_DIRECTION = "route-left";
 
     return (
       <div>
