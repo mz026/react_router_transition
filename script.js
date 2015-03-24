@@ -12,6 +12,17 @@ var Inbox = React.createClass({
 });
 
 var Dashboard = React.createClass({
+  componentWillMount: function() {
+    console.log('will mount');
+  },
+  componentDidMount: function() {
+    $('.dashboard').addClass('trans');
+    $('.dashboard').addClass('from-right');
+    setTimeout(function() {
+      $('.dashboard').removeClass('from-right');
+    });
+    console.log('did mount');
+  },
   render: function() {
     return (
       <h2 className="dashboard">Dashboard</h2>
