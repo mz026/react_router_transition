@@ -18,7 +18,7 @@ var Dashboard = React.createClass({
     return (
       <div className="route-handler">
         <h2 className="dashboard">Dashboard</h2>
-        
+
         <Link to="dashboard-detail">dashboard details</Link>
       </div>
     );
@@ -64,14 +64,7 @@ var App = React.createClass({
           Logged in as Jane
         </header>
 
-        {/* this is the important part */}
-        <TransitionGroup
-          component="div" 
-          transitionName={routeDirection}>
-
-          <RouteHandler key={name}/>
-
-        </TransitionGroup>
+        <TransitionRouteHandler />
       </div>
     );
   }
