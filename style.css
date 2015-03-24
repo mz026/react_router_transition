@@ -25,20 +25,40 @@
   position: absolute;
   width: 100%;
 }
-.route-enter {
+
+.xxxleft-enter {
   transform: translate(100%, 0);
   transition: transform .5s ease-in;
 }
 
-.route-enter.route-enter-active {
+.xxxleft-enter.xxxleft-enter-active {
   transform: translate(0, 0);
 }
 
-.route-leave {
+.xxxleft-leave {
   transform: translate(0, 0);
   transition: transform .5s ease-in;
 }
 
-.route-leave.route-leave-active {
+.xxxleft-leave.xxxleft-leave-active {
   transform: translate(-100%, 0);
+}
+
+
+.xxxright-enter {
+  transform: translate(-100%, 0);
+  transition: transform .5s ease-in;
+}
+
+.xxxright-enter.xxxright-enter-active {
+  transform: translate(0, 0);
+}
+
+.xxxright-leave {
+  transform: translate(0, 0);
+  transition: transform .5s ease-in;
+}
+
+.xxxright-leave.xxxright-leave-active {
+  transform: translate(100%, 0);
 }
