@@ -33,26 +33,55 @@ var Dashboard = React.createClass({
 
 
 var Calendar = React.createClass({
+  mixins: [ tweenState.Mixin ],
+  getInitialState: function() {
+    return {
+      left: 0
+    };
+  },
+
+  _tweenLeft: function() {
+    this.tweenState('left', {
+      easing: tweenState.easingTypes.easeInOutQuad,
+      duration: 500,
+      endValue: 100,
+      // endValue: this.state.left === 0 ? 100 : 0
+    });
+  },
+
+  _getStyle: function() {
+    console.log('get style');
+    return {
+      transform: 'translate(' + this.getTweeningValue('left') + '%, 0)'
+    };
+  },
+
   componentWillUnmount: function() {
-    $(this.getDOMNode()).addClass('old-state')
+    this._tweenLeft();
+    // $(this.getDOMNode()).addClass('old-state')
     console.log('unmount');
   },
+
   render: function() {
     return (
-      <h2 className="calender">Calendar</h2>
+      <h2 style={this._getStyle()} onClick={this._tweenLeft} className="calender">Calendar</h2>
     );
   }
 });
 
 var App = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.func.isRequired
+  },
   render: function () {
     return (
       <div>
         <header>
           <ul>
-            <li><Link to="app">Dashboard</Link></li>
-            <li><Link to="inbox">Inbox</Link></li>
-            <li><Link to="calendar">Calendar</Link></li>
+            <li><span onClick={this._getTransitionTo('app')} to="app">Dashboard</span></li>
+            <li><span onClick={this._getTransitionTo('inbox')} to="inbox">Inbox</span></li>
+            <li><span onClick={this._getTransitionTo('calendar')} to="calendar">Calendar</span></li>
+
           </ul>
           Logged in as Jane
         </header>
@@ -61,6 +90,12 @@ var App = React.createClass({
         <RouteHandler/>
       </div>
     );
+  },
+  _getTransitionTo: function(route) {
+    var self = this;
+    return function(){
+      self.context.router.transitionTo(route);
+    }
   }
 });
 
