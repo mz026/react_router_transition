@@ -79,9 +79,15 @@ var App = React.createClass({
         </header>
 
         {/* this is the important part */}
-        <TransitionGroup component="div" transitionName={routeDirection}>
+        <TimeoutTransitionGroup
+          enterTimeout={600}
+          leaveTimeout={600}
+          component="div" 
+          transitionName={routeDirection}>
+
           <RouteHandler key={name}/>
-        </TransitionGroup>
+
+        </TimeoutTransitionGroup>
       </div>
     );
   }
