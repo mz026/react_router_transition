@@ -16,10 +16,11 @@ var Dashboard = React.createClass({
     console.log('will mount');
   },
   componentDidMount: function() {
-    $('.dashboard').addClass('trans');
-    $('.dashboard').addClass('from-right');
+    var self = this;
+    $(this.getDOMNode()).addClass('new-state');
+    $(this.getDOMNode()).addClass('from-right');
     setTimeout(function() {
-      $('.dashboard').removeClass('from-right');
+      $(self.getDOMNode()).removeClass('from-right');
     });
     console.log('did mount');
   },
@@ -32,6 +33,10 @@ var Dashboard = React.createClass({
 
 
 var Calendar = React.createClass({
+  componentWillUnmount: function() {
+    $(this.getDOMNode()).addClass('old-state')
+    console.log('unmount');
+  },
   render: function() {
     return (
       <h2 className="calender">Calendar</h2>

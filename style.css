@@ -2,7 +2,11 @@
   background-color: green;
 }
 
-.trans {
+.old-state {
+  z-index: 0;
+}
+.new-state {
+  z-index: 2;
   transition: transform .4s;
 }
 .from-right {
