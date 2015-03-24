@@ -3,49 +3,40 @@ var Link = ReactRouter.Link;
 var Route = ReactRouter.Route;
 var RouteHandler = ReactRouter.RouteHandler;
 
+var TransitionGroup = React.addons.CSSTransitionGroup;
+
 var Inbox = React.createClass({
   render: function() {
     return (
-      <h2 className="inbox">Inbox Here</h2>
+      <h2 className="route-handler inbox">Inbox Here</h2>
     );
   }
 });
 
 var Dashboard = React.createClass({
-  componentWillMount: function() {
-    console.log('will mount');
-  },
-  componentDidMount: function() {
-    var self = this;
-    $(this.getDOMNode()).addClass('new-state');
-    $(this.getDOMNode()).addClass('from-right');
-    setTimeout(function() {
-      $(self.getDOMNode()).removeClass('from-right');
-    });
-    console.log('did mount');
-  },
   render: function() {
     return (
-      <h2 className="dashboard">Dashboard</h2>
+      <h2 className="route-handler dashboard">Dashboard</h2>
     );
   }
 });
 
 
 var Calendar = React.createClass({
-  componentWillUnmount: function() {
-    $(this.getDOMNode()).addClass('old-state')
-    console.log('unmount');
-  },
   render: function() {
     return (
-      <h2 className="calender">Calendar</h2>
+      <h2 className="route-handler calender">Calendar</h2>
     );
   }
 });
 
 var App = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.func.isRequired
+  },
   render: function () {
+    var name = this.context.router.getCurrentRoutes();
+    console.log(name);
     return (
       <div>
         <header>
@@ -58,7 +49,9 @@ var App = React.createClass({
         </header>
 
         {/* this is the important part */}
-        <RouteHandler/>
+        <TransitionGroup component="div" transitionName="route">
+          <RouteHandler key={name}/>
+        </TransitionGroup>
       </div>
     );
   }

@@ -20,3 +20,25 @@
 .inbox {
   background-color: yellow;
 }
+
+.route-handler {
+  position: absolute;
+  width: 100%;
+}
+.route-enter {
+  transform: translate(100%, 0);
+  transition: transform .5s ease-in;
+}
+
+.route-enter.route-enter-active {
+  transform: translate(0, 0);
+}
+
+.route-leave {
+  transform: translate(0, 0);
+  transition: transform .5s ease-in;
+}
+
+.route-leave.route-leave-active {
+  transform: translate(-100%, 0);
+}
