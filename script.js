@@ -26,22 +26,13 @@ var Dashboard = React.createClass({
 });
 
 var DashboardDetail = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.func.isRequired
-  },
   render: function() {
     return (
       <div className="route-handler">
         <h2>Dashboard Details</h2>
-        <a onClick={this._getTransitionTo('app')} to="app">back to dashboard</a>
+        <TransitionLink to="app" animation="route-right"> back to dash</TransitionLink>
       </div>
     );
-  },
-  _getTransitionTo: function(state) {
-    var self = this;
-    return function () {
-      self.context.router.transitionTo(state, null, { _animation: 'route-right' });
-    };
   }
 });
 
