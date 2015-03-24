@@ -26,23 +26,14 @@ var Dashboard = React.createClass({
 });
 
 var DashboardDetail = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.func.isRequired
-  },
   render: function() {
+    ROUTE_DIRECTION = "route-right";
     return (
       <div className="route-handler">
         <h2>Dashboard Details</h2>
-        <a onClick={this._getTransitionTo('app')} to="app">back to dashboard</a>
+        <Link to="app">back to dashboard</Link>
       </div>
     );
-  },
-  _getTransitionTo: function(state) {
-    var self = this;
-    return function () {
-      ROUTE_DIRECTION = 'route-right';
-      self.context.router.transitionTo(state, {key: 'val'}, { animation: 'left' });
-    };
   }
 });
 
@@ -63,9 +54,10 @@ var App = React.createClass({
   },
   render: function () {
     var name = this.context.router.getCurrentRoutes();
+    console.log(name);
 
-    var routeDirection = ROUTE_DIRECTION;
-    ROUTE_DIRECTION = 'route-left';
+    var transitionName = ROUTE_DIRECTION;
+    ROUTE_DIRECTION = "route-left";
 
     return (
       <div>
@@ -79,7 +71,7 @@ var App = React.createClass({
         </header>
 
         {/* this is the important part */}
-        <TransitionGroup component="div" transitionName={routeDirection}>
+        <TransitionGroup component="div" transitionName={transitionName}>
           <RouteHandler key={name}/>
         </TransitionGroup>
       </div>
