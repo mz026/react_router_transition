@@ -40,8 +40,7 @@ var DashboardDetail = React.createClass({
   _getTransitionTo: function(state) {
     var self = this;
     return function () {
-      ROUTE_DIRECTION = 'route-right';
-      self.context.router.transitionTo(state, {key: 'val'}, { animation: 'left' });
+      self.context.router.transitionTo(state, null, { _animation: 'route-right' });
     };
   }
 });
@@ -54,18 +53,14 @@ var Calendar = React.createClass({
   }
 });
 
-// WARNING: UGLY!!
-var ROUTE_DIRECTION = 'route-left';
-
 var App = React.createClass({
   contextTypes: {
     router: React.PropTypes.func.isRequired
   },
   render: function () {
-    var name = this.context.router.getCurrentRoutes();
-
-    var routeDirection = ROUTE_DIRECTION;
-    ROUTE_DIRECTION = 'route-left';
+    var router = this.context.router;
+    var name = router.getCurrentRoutes();
+    var routeDirection = router.getCurrentQuery()._animation || 'route-left';
 
     return (
       <div>
