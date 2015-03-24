@@ -16,7 +16,22 @@ var Inbox = React.createClass({
 var Dashboard = React.createClass({
   render: function() {
     return (
-      <h2 className="route-handler dashboard">Dashboard</h2>
+      <div className="route-handler">
+        <h2 className="dashboard">Dashboard</h2>
+        
+        <Link to="dashboard-detail">dashboard details</Link>
+      </div>
+    );
+  }
+});
+
+var DashboardDetail = React.createClass({
+  render: function() {
+    return (
+      <div className="route-handler">
+        <h2>Dashboard Details</h2>
+        <Link to="app">back to dashboard</Link>
+      </div>
     );
   }
 });
@@ -61,6 +76,7 @@ var routes = (
   <Route name="app" path="/" handler={App}>
     <Route name="inbox" handler={Inbox}/>
     <Route name="calendar" handler={Calendar}/>
+    <Route name="dashboard-detail" handler={DashboardDetail}/>
     <DefaultRoute handler={Dashboard}/>
   </Route>
 );
